@@ -20,26 +20,6 @@ class SDK
     public const MISSING_PARAMETER = 'SDK.MissingNecessaryParameter';
 
     /**
-     * Invalid RegionId
-     */
-    public const INVALID_REGION_ID = 'SDK.InvalidRegionId';
-
-    /**
-     * Invalid Argument
-     */
-    public const INVALID_ARGUMENT = 'SDK.InvalidArgument';
-
-    /**
-     * Service Not Found
-     */
-    public const SERVICE_NOT_FOUND = 'SDK.ServiceNotFound';
-
-    /**
-     * Service Unknown Error
-     */
-    public const SERVICE_UNKNOWN_ERROR = 'SDK.UnknownError';
-
-    /**
      * Response Empty
      */
     public const RESPONSE_EMPTY = 'The response is empty';
