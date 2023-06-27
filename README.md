@@ -29,6 +29,12 @@ src
 2.  composer install
 
 
+#### 代码格式化
+-	提交代码前使用pint库进行格式化
+```sh
+.\vendor\bin\pint --preset psr12
+```
+
 #### 特技
 
 1.	若需要扩展其它中台应用，在/src层级下创建目录，然后主类继承/src/Clients/Client
