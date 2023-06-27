@@ -20,11 +20,6 @@ class SDK
     public const MISSING_PARAMETER = 'SDK.MissingNecessaryParameter';
 
     /**
-     * Server Unreachable
-     */
-    public const SERVER_UNREACHABLE = 'SDK.ServerUnreachable';
-
-    /**
      * Invalid RegionId
      */
     public const INVALID_REGION_ID = 'SDK.InvalidRegionId';
