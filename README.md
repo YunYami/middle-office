@@ -8,18 +8,18 @@
 ```
 src
 ├── Clients
-│   ├── Client.php # 顶级父类，实现基础方法，其它扩展项目需要继承本类
+│   ├── Client.php 				# 顶级父类，实现基础方法，其它扩展项目需要继承本类
+├── App						# 应用目录，每个应用中心创建一个目录
 ├── Config 
-│   ├── Config.php # 配置类，封装密钥和key
+│   ├── Config.php	 			# 配置类，封装密钥和key
 ├── Exceptions
-│   ├── ClientException.php # 接口异常，根据自身需要扩展
-├── Route
-│   ├── Route.php # 
+│   ├── ClientException.php 			# 接口异常，根据自身需要扩展
+├── Route					# 需要提供指定函数的路由，根据自身创建目录
 ├── Utils
-│   ├── Utils.php # 工具类
-├── VO # 值对象
-│   ├── RequestHeader.php # 封装业务间传递的对象
-└── SDK.php # 错误信息
+│   ├── Utils.php				# 工具类
+├── VO 						# 值对象
+│   ├── RequestHeader.php			# 封装业务间传递的对象
+└── SDK.php					# 错误信息
 ```
 
 
@@ -37,9 +37,9 @@ src
 
 #### 特技
 
-1.	若需要扩展其它中台应用，在/src层级下创建目录，然后主类继承/src/Clients/Client
+1.	若需要扩展其它中台应用，在/src/App层级下创建目录，然后主类继承/src/Clients/Client
 2.	签名header调用/src/VO/RequestHader中的getHeader()
-3.	对外提供定制接口的路由，在/src/Route/Route中扩展
+3.	对外提供定制接口的路由，在/src/Route/下创建自己中心的目录，并扩展
 4.	ak和ac统一通过/src/Config/Config类来填充
 
 #### sdk导入

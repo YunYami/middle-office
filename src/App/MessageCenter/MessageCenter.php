@@ -1,6 +1,6 @@
 <?php
 
-namespace Gupo\MiddleOffice\MessageCenter;
+namespace Gupo\MiddleOffice\App\MessageCenter;
 
 use Gupo\MiddleOffice\Route\Route;
 use Gupo\MiddleOffice\Config\Config;

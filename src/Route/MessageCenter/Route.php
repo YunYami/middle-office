@@ -1,6 +1,6 @@
 <?php
 
-namespace Gupo\MiddleOffice\Route;
+namespace Gupo\MiddleOffice\MessageCenter\Route;
 
 /**
  * Class Route

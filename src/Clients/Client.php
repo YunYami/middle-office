@@ -45,7 +45,7 @@ class Client
     {
         Utils::assertAsArray($body);
         Utils::assertAsString($uri);
-        $client = new \GuzzleHttp\Client();
+        $client = new \Cloudladder\Http\Client();
         $response = $client->post($uri, [
             'form_params' => $body,
             'headers'     => $header,
