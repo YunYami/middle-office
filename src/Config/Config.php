@@ -10,8 +10,8 @@ namespace Gupo\MiddleOffice\Config;
  */
 class Config
 {
-    public $accessKey;
-    public $accessSecret;
+    public string $accessKey;
+    public string $accessSecret;
 
     public function __construct($accessKey, $accessSecret)
     {

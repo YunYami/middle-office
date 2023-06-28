@@ -2,9 +2,9 @@
 
 namespace Gupo\MiddleOffice\Clients;
 
-use Gupo\MiddleOffice\SDK;
 use Gupo\MiddleOffice\Utils\Utils;
 use Gupo\MiddleOffice\Config\Config;
+use Gupo\MiddleOffice\Error\ErrorInfo;
 use Gupo\MiddleOffice\Exception\ClientException;
 
 /**
@@ -17,16 +17,18 @@ class Client
 {
     protected $config;
 
-    public function __construct(Config $config)
+    public function __construct(Config $config = null, bool $needSignCheck = true)
     {
-        if (Utils::isUnset($config)) {
-            throw new ClientException(SDK::CONFIG_ERROR);
-        }
+        if ($needSignCheck) {
+            if (Utils::isUnset($config)) {
+                throw new ClientException(ErrorInfo::CONFIG_ERROR);
+            }
 
-        if (Utils::empty_($config->accessKey) || Utils::empty_($config->accessSecret)) {
-            throw new ClientException(SDK::MISSING_PARAMETER);
+            if (Utils::empty_($config->accessKey) || Utils::empty_($config->accessSecret)) {
+                throw new ClientException(ErrorInfo::MISSING_PARAMETER);
+            }
+            $this->config = $config;
         }
-        $this->config = $config;
     }
 
     /**
@@ -52,7 +54,7 @@ class Client
         ]);
         $content = $response->getBody()->getContents();
         if (!$content) {
-            throw new ClientException(SDK::RESPONSE_EMPTY);
+            throw new ClientException(ErrorInfo::RESPONSE_EMPTY);
         }
 
         return json_decode($content, true);
@@ -81,7 +83,7 @@ class Client
         ]);
         $content = $response->getBody()->getContents();
         if (!$content) {
-            throw new ClientException(SDK::RESPONSE_EMPTY);
+            throw new ClientException(ErrorInfo::RESPONSE_EMPTY);
         }
 
         return json_decode($content, true);

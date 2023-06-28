@@ -19,6 +19,7 @@
         "laravel/pint": "^1.10"
     },
     "require": {
-        "cloudladder/http": "1.1.0"
+        "cloudladder/http": "1.1.0",
+        "ext-json": "*"
     }
 }
