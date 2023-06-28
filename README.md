@@ -1,18 +1,20 @@
 # 古珀中台对外服务
 
 #### 介绍
-古珀中台对外服务
+-	古珀中台对外服务
+-	本库作为公共组件使用，不参杂业务端业务代码
+-	业务端sdk需要导入本库
 
 #### 结构说明
 
 ```
 src
 ├── Clients
-│   ├── Client.php 				# 顶级父类，实现基础方法，其它扩展项目需要继承本类
+│   ├── Client.php 				# 顶级父类，业务端需要继承奔雷
 ├── Config 
 │   ├── Config.php	 			# 配置类，封装密钥和key
 ├── Exceptions
-│   ├── ClientException.php 			# 接口异常，根据自身需要扩展
+│   ├── ClientException.php 			# 接口异常
 ├── Error					# 异常信息
 ├── Utils
 │   ├── Utils.php				# 工具类
