@@ -7,7 +7,7 @@ use Exception;
 /**
  * Class ClientException
  *
- * @package AlibabaCloud\Client\Exception
+ * @package Gupo\MiddleOffice\Exception
  * @author wm
  */
 class ClientException extends Exception
