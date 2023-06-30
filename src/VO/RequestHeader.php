@@ -2,6 +2,7 @@
 
 namespace Gupo\MiddleOffice\VO;
 
+use Gupo\MiddleOffice\Meta\Trace;
 use Gupo\MiddleOffice\Utils\Utils;
 use Gupo\MiddleOffice\Config\Config;
 
@@ -55,19 +56,19 @@ class RequestHeader
      * @author Wumeng wumeng@gupo.onaliyun.com
      * @since 2023-06-16 15:19
      */
-    public function getHeader($extra = [])
+    public function getHeader()
     {
         if ($this->alreadyGotHeader) {
             $this->refreshParameter();
         }
-        $header = array_merge([
+        $header = [
             "appId"         => $this->appId,
             "Authorization" => Utils::getAuthorization($this->config->accessKey, $this->dateTime, $this->nonce, $this->sign),
             "dateTime"      => $this->dateTime,
             "nonce"         => $this->nonce,
-        ], $extra);
+        ];
+        $header[trace::getKey()] = trace::getValue();  //设置全局请求id
         $this->alreadyGotHeader = true;
-
         return $header;
     }
 
