@@ -14,6 +14,13 @@
             "email": "wumeng@gupo.onaliyun.com"
         }
     ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Gupo\\MiddleOffice\\Provider\\RequestServiceProvider"
+            ]
+        }
+    },
     "minimum-stability": "alpha",
     "require-dev": {
         "laravel/pint": "^1.10"
