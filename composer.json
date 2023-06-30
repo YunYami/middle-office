@@ -6,13 +6,6 @@
     "autoload": {
         "psr-4": {
             "Gupo\\MiddleOffice\\": "src/"
-        },
-        "extra": {
-            "laravel": {
-                "providers": [
-                    "Gupo\\MiddleOffice\\Provider\\RequestServiceProvider"
-                ]
-            }
         }
     },
     "authors": [
@@ -23,8 +16,7 @@
     ],
     "minimum-stability": "alpha",
     "require-dev": {
-        "laravel/pint": "^1.10",
-        "illuminate/support": "^9.0"
+        "laravel/pint": "^1.10"
     },
     "require": {
         "cloudladder/http": "1.1.0",
