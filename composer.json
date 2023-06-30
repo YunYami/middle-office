@@ -6,6 +6,13 @@
     "autoload": {
         "psr-4": {
             "Gupo\\MiddleOffice\\": "src/"
+        },
+        "extra": {
+            "laravel": {
+                "providers": [
+                    "Gupo\\MiddleOffice\\Provider\\RequestServiceProvider"
+                ]
+            }
         }
     },
     "authors": [
