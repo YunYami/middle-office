@@ -23,7 +23,8 @@
     ],
     "minimum-stability": "alpha",
     "require-dev": {
-        "laravel/pint": "^1.10"
+        "laravel/pint": "^1.10",
+        "illuminate/support": "^9.0"
     },
     "require": {
         "cloudladder/http": "1.1.0",
