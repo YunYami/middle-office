@@ -55,17 +55,17 @@ class RequestHeader
      * @author Wumeng wumeng@gupo.onaliyun.com
      * @since 2023-06-16 15:19
      */
-    public function getHeader()
+    public function getHeader($extra = [])
     {
         if ($this->alreadyGotHeader) {
             $this->refreshParameter();
         }
-        $header = [
+        $header = array_merge([
             "appId"         => $this->appId,
             "Authorization" => Utils::getAuthorization($this->config->accessKey, $this->dateTime, $this->nonce, $this->sign),
             "dateTime"      => $this->dateTime,
             "nonce"         => $this->nonce,
-        ];
+        ], $extra);
         $this->alreadyGotHeader = true;
 
         return $header;
