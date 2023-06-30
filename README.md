@@ -37,10 +37,15 @@ src
 
 #### 使用说明
 
+一：sdk调用流程
 1.	使用本库，需在主类继承/src/Clients/Client
 2.	签名header调用/src/VO/RequestHader中的getHeader()
 3.	ak和ac统一通过/src/Config/Config类来填充
 4.	请求均使用client类中提供的get或post函数发起
+
+二：日志写入流程
+1.调用LogModuel/Logs类中的writeLog()方法
+2:配置用户中心的日志写入的请求链接放在env中，如:log_url = http://uat-api.group-ds.com/bmo-auth-api/api/v2/request/log/create
 
 #### sdk导入
 ```sh
