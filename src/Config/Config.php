@@ -35,7 +35,7 @@ class Config
             // 将该配置文件复制到当前目录下的configfile中
             copy($outerConfigPath, $innerConfigPath);
             $config = include $innerConfigPath;
-            if (Utils::empty_($config)) {
+            if (Utils::empty_($config) || !Utils::assertAsArray($config)) {
                 throw new ClientException(ErrorInfo::CONFIG_ERROR."1");
             }
             if (Utils::isUnset($config['id'])
