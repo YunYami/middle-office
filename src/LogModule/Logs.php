@@ -12,7 +12,7 @@ use GuzzleHttp\Client as GuzzleHttpClient;
  */
 class Logs
 {
-    public static function writeLog(string $content)
+    public static function writeLog(string $content,string $type = "bur_point")
     {
         $arr = [
             'system_code' => RequestData::getAppName(),
@@ -20,7 +20,7 @@ class Logs
             'host_url' => RequestData::getHost(),
             'x_gp_trace_id' => RequestData::getRequestId(),
             'content' => $content,
-            'type' => 'bur_point',  //埋点类型
+            'type' => $type,  //日志类型
             'request_input' => RequestData::getInputRequest(),
             'jwt' => RequestData::getToken()
         ];
