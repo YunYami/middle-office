@@ -35,6 +35,20 @@ src
 .\vendor\bin\pint --preset psr12
 ```
 
+#### 注意事项
+-	依赖了本库的项目，必须要在config目录下面创建middleoffice.php的配置文件（如果同为中台sdk包引入，不需要创建，不过独立项目需要）
+-	middleoffice.php格式如下：
+```php
+<?php
+
+return [
+    'id' => env('AUTH_CENTER_APP_ID'),
+    'app_id' => env('AUTH_CENTER_APP_KEy'),
+    'app_secret' => env('AUTH_CENTER_APP_SECRET'),
+];
+```
+
+
 #### 使用说明
 
 一：sdk调用流程
