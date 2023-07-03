@@ -2,6 +2,8 @@
 
 namespace Gupo\MiddleOffice\Utils;
 
+use Gupo\MiddleOffice\VO\Sign;
+
 class Utils
 {
     /**
@@ -92,7 +94,7 @@ class Utils
      */
     public static function getAuthorization($accessKey, $dateTime, $nonce, $sign)
     {
-        return sprintf("AccessKey=%s,DateTime=%s,Nonce=%s,Signature=%s", $accessKey, $dateTime, $nonce, $sign);
+        return sprintf("AccessKey=%s,DateTime=%s,Nonce=%s,Sign=%s", $accessKey, $dateTime, $nonce, $sign);
     }
 
     /**
@@ -162,6 +164,14 @@ class Utils
         throw new \InvalidArgumentException('It is not a number value.');
     }
 
+    /**
+     * 断言为数组
+     *
+     * @param $any
+     * @return array
+     * @author Wumeng wumeng@gupo.onaliyun.com
+     * @since 2023-07-03 17:55
+     */
     public static function assertAsArray($any)
     {
         if (\is_array($any)) {
@@ -169,5 +179,33 @@ class Utils
         }
 
         throw new \InvalidArgumentException('It is not a array value.');
+    }
+
+    /**
+     * 验证签名有效性，不过无法验证是否重复
+     *
+     * @param  Sign  $sign
+     * @param  string  $requestSign
+     * @return array
+     * @author Wumeng wumeng@gupo.onaliyun.com
+     * @since 2023-07-03 17:55
+     */
+    public static function verifySignature(Sign $sign, string $requestSign)
+    {
+        // 验证timestamp是否过期
+        if (time() - strtotime($sign->datetime) > 300) {
+            return ['result' => false, 'msg' => '签名过期'];
+        }
+
+        $tmpSign = sprintf('%s:%s:%s:%s', $sign->config->accessKey, $sign->datetime, $sign->nonce, $sign->hashBody);
+
+        $handledSign = hash_hmac('sha256', $tmpSign, $sign->config->accessSecret);
+
+        $computedSignature = sprintf('AccessKey=%s,DateTime=%s,Nonce=%s,Signature=%s', $sign->config->accessKey, $datetime, $nonce, $handledSign);
+
+        if ($computedSignature !== $requestSign) {
+            return ['result' => false, 'msg' => '签名无效'];
+        }
+        return ['result' => true, 'msg' => 'success'];
     }
 }
