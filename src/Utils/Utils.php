@@ -197,11 +197,11 @@ class Utils
             return ['result' => false, 'msg' => '签名过期'];
         }
 
-        $tmpSign = sprintf('%s:%s:%s:%s', $sign->config->accessKey, $sign->datetime, $sign->nonce, $sign->hashBody);
+        $tmpSign = sprintf('%s:%s:%s:%s', $sign->accessKey, $sign->datetime, $sign->nonce, $sign->hashBody);
 
-        $handledSign = hash_hmac('sha256', $tmpSign, $sign->config->accessSecret);
+        $handledSign = hash_hmac('sha256', $tmpSign, $sign->accessSecret);
 
-        $computedSignature = sprintf('AccessKey=%s,DateTime=%s,Nonce=%s,Signature=%s', $sign->config->accessKey, $datetime, $nonce, $handledSign);
+        $computedSignature = sprintf('AccessKey=%s,DateTime=%s,Nonce=%s,Signature=%s', $sign->accessKey, $sign->datetime, $sign->nonce, $handledSign);
 
         if ($computedSignature !== $requestSign) {
             return ['result' => false, 'msg' => '签名无效'];

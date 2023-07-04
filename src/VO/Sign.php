@@ -21,12 +21,15 @@ class Sign
     public string $datetime;
     // hash加密请求数据，通过hash-SHA256的方式加密，请求体以http_build_query处理，举例laravel框架：http_build_query($request->input())
     public string $hashBody;
-    // 存储配置信息
-    public Config $config;
+    // key
+    public string $accessKey;
+    // secret
+    public string $accessSecret;
 
-    public function __construct(Config $config, $nonce, $datetime, $hashBody)
+    public function __construct($accessKey, $accessSecret, $nonce, $datetime, $hashBody)
     {
-        $this->config = $config;
+        $this->accessKey = $accessKey;
+        $this->accessSecret = $accessSecret;
         $this->nonce = $nonce;
         $this->datetime = $datetime;
         $this->hashBody = $hashBody;

@@ -36,7 +36,9 @@ src
 ```
 
 #### 注意事项
--	依赖了本库的项目，必须要在config目录下面创建middleoffice.php的配置文件（如果同为中台sdk包引入，不需要创建，不过独立项目需要）
+-	依赖本库的独立项目，需要在根目录下面的config目录下创建middleoffice.php的配置文件
+-	若是其它中台项目sdk依赖本库，不需要创建
+-	若是中台独立项目依赖本库，但不需要使用Config类，那么也不需要创建
 -	middleoffice.php格式如下：
 ```php
 <?php
@@ -51,15 +53,15 @@ return [
 
 #### 使用说明
 
-一：sdk调用流程
+一、sdk调用流程
 1.	使用本库，需在主类继承/src/Clients/Client
 2.	签名header调用/src/VO/RequestHader中的getHeader()
 3.	ak和ac统一通过/src/Config/Config类来填充
 4.	请求均使用client类中提供的get或post函数发起
 
-二：日志写入流程
-1.调用LogModuel/Logs类中的writeLog()方法
-2:配置用户中心的日志写入的请求链接放在env中，如:log_url = http://uat-api.group-ds.com/bmo-auth-api/api/v2/request/log/create
+二、日志写入流程
+1.	调用LogModuel/Logs类中的writeLog()方法
+2.	配置用户中心的日志写入的请求链接放在env中，如:log_url = http://uat-api.group-ds.com/bmo-auth-api/api/v2/request/log/create
 
 #### sdk导入
 ```sh
