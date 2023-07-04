@@ -180,32 +180,4 @@ class Utils
 
         throw new \InvalidArgumentException('It is not a array value.');
     }
-
-    /**
-     * 验证签名有效性，不过无法验证是否重复
-     *
-     * @param  Sign  $sign
-     * @param  string  $requestSign
-     * @return array
-     * @author Wumeng wumeng@gupo.onaliyun.com
-     * @since 2023-07-03 17:55
-     */
-    public static function verifySignature(Sign $sign, string $requestSign)
-    {
-        // 验证timestamp是否过期
-        if (time() - strtotime($sign->datetime) > 300) {
-            return ['result' => false, 'msg' => '签名过期'];
-        }
-
-        $tmpSign = sprintf('%s:%s:%s:%s', $sign->accessKey, $sign->datetime, $sign->nonce, $sign->hashBody);
-
-        $handledSign = hash_hmac('sha256', $tmpSign, $sign->accessSecret);
-
-        $computedSignature = sprintf('AccessKey=%s,DateTime=%s,Nonce=%s,Signature=%s', $sign->accessKey, $sign->datetime, $sign->nonce, $handledSign);
-
-        if ($computedSignature !== $requestSign) {
-            return ['result' => false, 'msg' => '签名无效'];
-        }
-        return ['result' => true, 'msg' => 'success'];
-    }
 }
