@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace Gupo\MiddleOffice\VO;
 
-
-use Gupo\MiddleOffice\Config\Config;
-
 /**
  * Class Sign
  *
@@ -19,19 +16,19 @@ class Sign
     public string $nonce;
     // 字符串日期 - 防止请求过期 规则：date(DATE_RFC3339)
     public string $datetime;
-    // hash加密请求数据，通过hash-SHA256的方式加密，请求体以http_build_query处理，举例laravel框架：http_build_query($request->input())
+    // hash加密请求数据，通过hash-SHA256的方式加密
     public string $hashBody;
     // key
     public string $accessKey;
     // secret
     public string $accessSecret;
 
-    public function __construct($accessKey, $accessSecret, $nonce, $datetime, $hashBody)
+    public function __construct($accessKey, $accessSecret, $nonce, $datetime, array $hashBody)
     {
         $this->accessKey = $accessKey;
         $this->accessSecret = $accessSecret;
         $this->nonce = $nonce;
         $this->datetime = $datetime;
-        $this->hashBody = $hashBody;
+        $this->hashBody = hash('sha256', http_build_query($hashBody));
     }
 }

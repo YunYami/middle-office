@@ -1,8 +1,10 @@
 <?php
 
 namespace Gupo\MiddleOffice\Meta;
+
 // 链路追踪id
 use Illuminate\Support\Str;
+
 /**
  * Class ErrorInfo
  *
@@ -10,7 +12,7 @@ use Illuminate\Support\Str;
  */
 class Trace
 {
-    const KEY = "x-gp-trace-id";
+    public const KEY = "x-gp-trace-id";
 
     public static function getKey(): string
     {
@@ -22,14 +24,14 @@ class Trace
         // 上游已传直接透传
         if (function_exists("request")) {
             $hv = request()->header(self::KEY);
-            if (!is_null($hv)){
+            if (!is_null($hv)) {
                 return $hv;
             }
         }
         // laravel自带的uuid方法
         if (class_exists(Str::class, false) && method_exists(Str::class, 'uuid')) {
             $request_id = Str::uuid()->toString();
-            Request()->headers->set(self::KEY,$request_id);  //注册到head头部
+            Request()->headers->set(self::KEY, $request_id);  //注册到head头部
             return $request_id;
         }
 

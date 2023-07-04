@@ -54,7 +54,7 @@ class RequestData
     {
         if (function_exists("request")) {
             $input_request = request()->all();
-            $input_request_str = json_encode($input_request,true);
+            $input_request_str = json_encode($input_request, true);
         }
         return $input_request_str ?? "";
     }

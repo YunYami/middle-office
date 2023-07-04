@@ -12,7 +12,7 @@ use GuzzleHttp\Client as GuzzleHttpClient;
  */
 class Logs
 {
-    public static function writeLog(string $content,string $type = "bur_point")
+    public static function writeLog(string $content, string $type = "bur_point")
     {
         $arr = [
             'system_code' => RequestData::getAppName(),
@@ -24,7 +24,7 @@ class Logs
             'request_input' => RequestData::getInputRequest(),
             'jwt' => RequestData::getToken()
         ];
-        if(function_exists("env") && env("log_url")){
+        if(function_exists("env") && env("log_url")) {
             $url = env("log_url");
             $options = [
                 'json' => $arr,
