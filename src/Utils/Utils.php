@@ -94,7 +94,7 @@ class Utils
      */
     public static function getAuthorization($accessKey, $dateTime, $nonce, $sign)
     {
-        return sprintf("AccessKey=%s,DateTime=%s,Nonce=%s,Sign=%s", $accessKey, $dateTime, $nonce, $sign);
+        return sprintf("AccessKey=%s,DateTime=%s,Nonce=%s,Signature=%s", $accessKey, $dateTime, $nonce, $sign);
     }
 
     /**
