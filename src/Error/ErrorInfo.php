@@ -4,8 +4,6 @@ namespace Gupo\MiddleOffice\Error;
 
 /**
  * Class ErrorInfo
- *
- * @package Gupo\MiddleOffice
  */
 class ErrorInfo
 {

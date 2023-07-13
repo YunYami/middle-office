@@ -2,15 +2,16 @@
 
 namespace Gupo\MiddleOffice\Clients;
 
-use Gupo\MiddleOffice\Utils\Utils;
 use Gupo\MiddleOffice\Config\Config;
 use Gupo\MiddleOffice\Error\ErrorInfo;
 use Gupo\MiddleOffice\Exception\ClientException;
+use Gupo\MiddleOffice\Utils\Utils;
 
 /**
  * Class Client
  *
  * @author: Wumeng - wumeng@gupo.onaliyun.com
+ *
  * @since: 2023-06-15 16:22
  */
 class Client
@@ -34,13 +35,13 @@ class Client
     /**
      * post请求
      *
-     * @param $header
-     * @param $body
-     * @param $uri
      * @return mixed
+     *
      * @throws ClientException
      * @throws \GuzzleHttp\Exception\GuzzleException
+     *
      * @author Wumeng wumeng@gupo.onaliyun.com
+     *
      * @since 2023-06-16 15:17
      */
     protected function callApiPost($header, $body, $uri)
@@ -50,10 +51,10 @@ class Client
         $client = new \Cloudladder\Http\Client();
         $response = $client->post($uri, [
             'form_params' => $body,
-            'headers'     => $header,
+            'headers' => $header,
         ]);
         $content = $response->getBody()->getContents();
-        if (!$content) {
+        if (! $content) {
             throw new ClientException(ErrorInfo::RESPONSE_EMPTY);
         }
 
@@ -63,13 +64,13 @@ class Client
     /**
      * get请求
      *
-     * @param $header
-     * @param $query
-     * @param $uri
      * @return mixed
+     *
      * @throws ClientException
      * @throws \GuzzleHttp\Exception\GuzzleException
+     *
      * @author Wumeng wumeng@gupo.onaliyun.com
+     *
      * @since 2023-06-16 15:17
      */
     protected function callApiGet($header, $query, $uri)
@@ -78,11 +79,11 @@ class Client
         Utils::assertAsString($uri);
         $client = new \GuzzleHttp\Client();
         $response = $client->get($uri, [
-            'query'   => $query,
+            'query' => $query,
             'headers' => $header,
         ]);
         $content = $response->getBody()->getContents();
-        if (!$content) {
+        if (! $content) {
             throw new ClientException(ErrorInfo::RESPONSE_EMPTY);
         }
 

@@ -40,6 +40,7 @@ src
 -	若是其它中台项目sdk依赖本库，不需要创建
 -	若是中台独立项目依赖本库，但不需要使用Config类，那么也不需要创建
 -	middleoffice.php格式如下：
+
 ```php
 <?php
 
@@ -61,7 +62,7 @@ return [
 
 二、日志写入流程
 1.	调用LogModuel/Logs类中的writeLog()方法
-2.	配置用户中心的日志写入的请求链接放在env中，如:log_url = http://uat-api.group-ds.com/bmo-auth-api/api/v2/request/log/create
+2.	配置日志写入的请求url放在env中，如: LOG_URL = http://xxx.com/api/v2/request/log/create
 
 #### sdk导入
 ```sh

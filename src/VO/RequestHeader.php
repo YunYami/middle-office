@@ -2,14 +2,15 @@
 
 namespace Gupo\MiddleOffice\VO;
 
+use Gupo\MiddleOffice\Config\Config;
 use Gupo\MiddleOffice\Meta\Trace;
 use Gupo\MiddleOffice\Utils\Utils;
-use Gupo\MiddleOffice\Config\Config;
 
 /**
  * Class RequestHeader
  *
  * @author: Wumeng - wumeng@gupo.onaliyun.com
+ *
  * @since: 2023-06-16 10:42
  */
 class RequestHeader
@@ -52,9 +53,10 @@ class RequestHeader
     /**
      * 获取header，如果已经获取过，再次调用则刷新签名
      *
-     * @param  array  $extraParam
      * @return array
+     *
      * @author Wumeng wumeng@gupo.onaliyun.com
+     *
      * @since 2023-06-30 16:38
      */
     public function getHeader(array $extraParam = [])
@@ -63,13 +65,14 @@ class RequestHeader
             $this->refreshParameter();
         }
         $header = array_merge([
-            "appId"         => $this->appId,
-            "Authorization" => Utils::getAuthorization($this->config->accessKey, $this->dateTime, $this->nonce, $this->sign),
-            "dateTime"      => $this->dateTime,
-            "nonce"         => $this->nonce,
+            'appId' => $this->appId,
+            'Authorization' => Utils::getAuthorization($this->config->accessKey, $this->dateTime, $this->nonce, $this->sign),
+            'dateTime' => $this->dateTime,
+            'nonce' => $this->nonce,
         ], $extraParam);
         $header[trace::getKey()] = trace::getValue();  //设置全局请求id
         $this->alreadyGotHeader = true;
+
         return $header;
     }
 
@@ -77,6 +80,7 @@ class RequestHeader
      * 刷新签名所需参数
      *
      * @author Wumeng wumeng@gupo.onaliyun.com
+     *
      * @since 2023-06-16 15:19
      */
     public function refreshParameter()

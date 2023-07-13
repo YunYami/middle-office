@@ -7,17 +7,12 @@ use Exception;
 /**
  * Class ClientException
  *
- * @package Gupo\MiddleOffice\Exception
  * @author wm
  */
 class ClientException extends Exception
 {
     /**
      * ClientException constructor
-     *
-     * @param $errorMessage
-     * @param $errorCode
-     * @param $previous
      */
     public function __construct($errorMessage, $errorCode = 0, $previous = null)
     {

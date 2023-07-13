@@ -7,12 +7,10 @@ use Illuminate\Support\Str;
 
 /**
  * Class ErrorInfo
- *
- * @package Gupo\MiddleOffice
  */
 class Trace
 {
-    public const KEY = "x-gp-trace-id";
+    public const KEY = 'x-gp-trace-id';
 
     public static function getKey(): string
     {
@@ -22,9 +20,9 @@ class Trace
     public static function getValue(): string
     {
         // 上游已传直接透传
-        if (function_exists("request")) {
+        if (function_exists('request')) {
             $hv = request()->header(self::KEY);
-            if (!is_null($hv)) {
+            if (! is_null($hv)) {
                 return $hv;
             }
         }
@@ -32,6 +30,7 @@ class Trace
         if (class_exists(Str::class, false) && method_exists(Str::class, 'uuid')) {
             $request_id = Str::uuid()->toString();
             Request()->headers->set(self::KEY, $request_id);  //注册到head头部
+
             return $request_id;
         }
 
