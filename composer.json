@@ -14,15 +14,6 @@
             "email": "wumeng@gupo.onaliyun.com"
         }
     ],
-    "config": {
-        "sort-packages": true,
-        "preferred-install": "dist",
-        "optimize-autoloader": true
-    },
-    "dist": {
-        "url": "https://gp-temp-storage.oss-cn-hangzhou.aliyuncs.com/bmo-notice-api/master/v0/3boSM8y6JYAEYGj5wi71EE8SHteASuPZuaZ0NgIg.zip",
-        "type": "zip"
-    },
     "extra": {
         "laravel": {
             "providers": [
@@ -32,7 +23,7 @@
     },
     "minimum-stability": "alpha",
     "require": {
-        "cloudladder/http": "~1.2.0",
+        "cloudladder/http": "~1.2.1",
         "ext-json": "*"
     }
 }

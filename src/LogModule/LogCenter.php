@@ -11,10 +11,16 @@ use GuzzleHttp\Client as GuzzleHttpClient;
 class LogCenter
 {
     /**
-     * Author: chenyifan
-     * Des: -记录操作日志-
+     * 记录操作日志
+     *
+     * @param string $biz_code 业务代码
+     * @param string $content 业务自定义JSON内容
+     * @param string $action_module 操作模块
+     * @param string $action_object 操作对象
+     *
+     * @return bool
      */
-    public static function recordAction(string $content, string $action_module = '', string $action_object = '')
+    public static function recordAction(string $biz_code, string $content, string $action_module = '', string $action_object = '')
     {
         if (! function_exists('env')) {
             return false;
@@ -27,6 +33,7 @@ class LogCenter
             'route_url' => RequestData::getRoute(),
             'host_url' => RequestData::getHost(),
             'x_gp_trace_id' => RequestData::getRequestId(),
+            'biz_code' => $biz_code,
             'type' => 'action',  //日志类型
             'action_module' => $action_module,
             'action_object' => $action_object,
@@ -40,7 +47,12 @@ class LogCenter
             'headers' => ['Content-Type' => 'application/json'],
         ];
         $client = new GuzzleHttpClient();
-        $client->request('post', $url, $options); //记录日志
+
+        try {
+            $client->request('post', $url, $options); //记录日志
+        }catch (\Exception $e){
+            return false;
+        }
 
         return true;
     }
