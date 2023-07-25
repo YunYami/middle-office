@@ -17,10 +17,11 @@ class LogCenter
      * @param string $content 业务自定义JSON内容
      * @param string $action_module 操作模块
      * @param string $action_object 操作对象
+     * @param string $action_behavior 操作行为
      *
      * @return bool
      */
-    public static function recordAction(string $biz_code, string $content, string $action_module = '', string $action_object = '')
+    public static function recordAction(string $biz_code, string $content, string $action_module = '', string $action_object = '',  string $action_behavior = '')
     {
         if (! function_exists('env')) {
             return false;
@@ -37,6 +38,7 @@ class LogCenter
             'type' => 'action',  //日志类型
             'action_module' => $action_module,
             'action_object' => $action_object,
+            'action_behavior' => $action_behavior,
             'content' => $content,
             'request_input' => RequestData::getInputRequest(),
             'jwt' => RequestData::getToken(),
